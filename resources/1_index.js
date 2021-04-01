@@ -1,15 +1,4 @@
-import Baselayout from '@/components/layouts/baselayout'
-import {useGetUser} from '@/actions/user'
-import Basepage from '@/components/Basepage'
-import {Container, Row, Col } from 'reactstrap';
-import Typed from 'react-typed';
-const Index = () => {
-  const Roles = ['Developer','Tech Lover','Team Player','Coursor Create','React','Angular']
-  const {data,error,loading} = useGetUser();
-  debugger
-  return(
-    <div>
-      <Baselayout navClass="transparent" className="cover" user={data} loading={loading}>
+<BaseLayout className="cover">
   <div className="main-section">
     <div className="background-image">
       <img src="/images/background-index.png" />
@@ -27,7 +16,7 @@ const Index = () => {
                     Have a look at my portfolio and job history.
                   </div>
                 </div>
-                <img className="image" src="/images/section-1.jpg"/>
+                <img className="image" src="/images/section-1.png"/>
                 <div className="shadow-custom">
                   <div className="shadow-inner"> </div>
                 </div>
@@ -38,21 +27,10 @@ const Index = () => {
         <Col md="6" className="hero-welcome-wrapper">
           <div className="hero-welcome-text">
             <h1>
-              Welcome to the portfolio website of Sofiane Ameziane.
+              Welcome to the portfolio website of Filip Jerga.
               Get informed, collaborate and discover projects I was working on through the years!
             </h1>
           </div>
-          <Typed
-                    loop
-                    strings={Roles}
-                    typeSpeed={70}
-                    backSpeed={70}
-                    backDelay={1000}
-                    loopCount={0}
-                    showCursor
-                    className="self-typed"
-                    cursorChar="|"
-                />
           <div className="hero-welcome-bio">
             <h1>
               Let's take a look on my work.
@@ -62,9 +40,4 @@ const Index = () => {
       </Row>
     </Container>
   </div>
-</Baselayout>
-
-    </div>
-  )
-}
-export default Index
+</BaseLayout>
