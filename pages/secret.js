@@ -1,23 +1,29 @@
-import Baselayout from '@/components/layouts/baselayout'
-import Basepage from '@/components/Basepage'
-import {useGetUser} from '@/actions/user'
-import {useRouter} from 'next/router'
+import BaseLayout from '@/components/layouts/BaseLayout';
+import BasePage from '@/components/BasePage';
+import { useGetUser } from '@/actions/user';
+import Redirect from '@/components/shared/Redirect';
+import withAuth from '@/hoc/withAuth';
 
-const Secret = () => {
-  const {data,loading} = useGetUser();
-  const route = useRouter();
-   if (loading) {
-       return <p>...loading</p>
-   }
+const Secret = ({title}) => {
+  const { data, loading } = useGetUser();
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
   if (!data) {
-      route.push('/api/V1/login')
-      return null
+    // Todo: Improve return
+    return <Redirect to="/api/V1/login"/>
+    //router.push('/api/v1/login');
   } else {
-  <Baselayout user={data} loading={loading}>
-  <Basepage>
-  i am secret page
-  </Basepage>
-  </Baselayout>
+    return (
+      <BaseLayout user={data} loading={loading}>
+        <BasePage>
+          <h1>I am Secret Page - {title}</h1>
+        </BasePage>
+      </BaseLayout>
+    )
   }
-  }
-  export default Secret
+}
+
+export default withAuth(Secret);

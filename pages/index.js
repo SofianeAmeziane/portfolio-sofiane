@@ -5,11 +5,10 @@ import {Container, Row, Col } from 'reactstrap';
 import Typed from 'react-typed';
 const Index = () => {
   const Roles = ['Developer','Tech Lover','Team Player','Coursor Create','React','Angular']
-  const {data,error,loading} = useGetUser();
-  debugger
+  const { data, loading } = useGetUser();
   return(
     <div>
-      <Baselayout navClass="transparent" className="cover" user={data} loading={loading}>
+<Baselayout navClass="transparent" className="cover" user={data} loading={loading}>
   <div className="main-section">
     <div className="background-image">
       <img src="/images/background-index.png" />
