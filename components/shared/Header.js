@@ -20,7 +20,8 @@ const Bslink = (props) =>{
     )
 }
 const Login = () => {
-  return <a className='nav-link port-navbar-link' href='/api/V1/login'>Login</a>
+  return <a className="nav-link port-navbar-link" href="/api/V1/login">Login</a>
+  
 }
 const Logout = () => {
   return <a className='nav-link port-navbar-link' href='/api/V1/logout'>Logout</a>
@@ -67,7 +68,21 @@ const Header = ({user,loading,classNameheader}) => {
                 <Bslink title="Secret" url="/secret"/>
             </NavItem>
           </Nav>
-          <Nav navbar>
+          <Nav >
+          { !loading &&
+              <>
+                { user &&
+                  <NavItem className="port-navbar-item">
+                    <Logout />
+                  </NavItem>
+                }
+                { !user &&
+                  <NavItem className="port-navbar-item">
+                    <Login />
+                  </NavItem>
+                }
+              </>
+            }
           </Nav>
         </Collapse>
       </Navbar>
