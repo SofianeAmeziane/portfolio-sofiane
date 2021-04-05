@@ -3,7 +3,7 @@ import Basepage from '@/components/Basepage'
 import {useGetUser} from '@/actions/user'
 
 const About = () => {
-  const {data,error, loading} = useGetUser();
+  const {data, loading} = useGetUser();
   debugger
     return(
       <div>
