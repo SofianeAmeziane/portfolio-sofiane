@@ -1,17 +1,16 @@
 import Baselayout from '@/components/layouts/baselayout'
 import Basepage from '@/components/Basepage'
-import {useGetUser} from '@/actions/user'
+import withAuth from '@/hoc/withAuth';
 
-const Cv = () => {
-  const {data,loading} = useGetUser();
+const Cv = ({user,loading}) => {
     return(
       <div>
-      <Baselayout user={data} loading={loading}>
+      <Baselayout user={user} loading={loading}>
       <Basepage>
-      i am Cv page
+      i am Cv page-{user.name}
       </Basepage>
       </Baselayout>
       </div>
     )
   }
-  export default Cv
+  export default withAuth(Cv)()

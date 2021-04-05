@@ -64,8 +64,18 @@ const Header = ({user,loading,classNameheader}) => {
             <NavItem className="port-navbar-item">
                 <Bslink title="CV" url="/cv"/>
             </NavItem>
+            
             <NavItem className="port-navbar-item">
                 <Bslink title="Secret" url="/secret"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+            <Bslink title="SecretSSR" url="/secretssr"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+            <Bslink title="Admin" url="/onlyadmin"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+            <Bslink title="AdminSSR" url="/onlyadminssr"/>
             </NavItem>
           </Nav>
           <Nav >
