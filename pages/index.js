@@ -1,6 +1,5 @@
 import Baselayout from '@/components/layouts/baselayout'
 import {useGetUser} from '@/actions/user'
-import Basepage from '@/components/Basepage'
 import {Container, Row, Col } from 'reactstrap';
 import Typed from 'react-typed';
 const Index = () => {

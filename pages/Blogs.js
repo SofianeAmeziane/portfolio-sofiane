@@ -6,7 +6,7 @@ const Blogs = () => {
   const {data,loading} = useGetUser();
     return(
       <div>
-      <Baselayout user={data} loading={loading}>
+      <Baselayout  user={data} loading={loading}>
       <Basepage>
       i am Blogs page
       </Basepage>
