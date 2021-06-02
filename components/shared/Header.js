@@ -5,15 +5,20 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  NavItem,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from "reactstrap";
 import Link from "next/link";
+import { isAuthorized } from '@/utils/auth0';
 
 const Bslink = (props) => {
-  const { title, url } = props;
+  const { title, url, className='' } = props;
   return (
     <Link href={url}>
-      <a className="nav-link port-navbar-link">{title}</a>
+      <a className={`nav-link port-navbar-link ${className}`}>{title}</a>
     </Link>
   );
 };
@@ -31,12 +36,42 @@ const Logout = () => {
     </a>
   );
 };
-function Inout(props) {
-  const isLoggedIn = props.isLoggedIn;
-  if (isLoggedIn) {
-    return <Logout />;
-  }
-  return <Login />;
+const AdminMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <Dropdown
+      className="port-navbar-link port-dropdown-menu"
+      nav
+      isOpen={isOpen}
+      toggle={() => setIsOpen(!isOpen)}>
+        <DropdownToggle className="port-dropdown-toggle" nav caret>
+          Admin
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>
+            <Bslink
+              className="port-dropdown-item"
+              url="/portfolios/new"
+              title="Create Portfolio"
+            />
+          </DropdownItem>
+          <DropdownItem>
+            <Bslink
+              className="port-dropdown-item"
+              url="/blogs/editor"
+              title="Blog Editor"
+            />
+          </DropdownItem>
+          <DropdownItem>
+            <Bslink
+              className="port-dropdown-item"
+              url="/blogs/dashboard"
+              title="Dashboard"
+            />
+          </DropdownItem>
+        </DropdownMenu>
+    </Dropdown>
+  )
 }
 const Header = ({ user, loading, classNameheader }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -82,15 +117,18 @@ const Header = ({ user, loading, classNameheader }) => {
                 <NavItem className="port-navbar-item">
                 <Bslink title="AdminSSR" url="/onlyadminssr"/>
                 </NavItem>
-*/}
+            */}
           </Nav>
           <Nav>
             {!loading && (
               <>
                 {user && (
+                  <>
+                  { isAuthorized(user, 'admin')  && <AdminMenu />} 
                   <NavItem className="port-navbar-item">
                     <Logout />
                   </NavItem>
+                  </>
                 )}
                 {!user && (
                   <NavItem className="port-navbar-item">
