@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 module.exports ={
     webpack : config => {
      config.resolve.alias['@'] = path.resolve(__dirname);
